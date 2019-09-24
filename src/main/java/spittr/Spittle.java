@@ -1,5 +1,8 @@
 package spittr;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -48,16 +51,12 @@ public class Spittle {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Spittle spittle = (Spittle) o;
-        return Objects.equals(id, spittle.id) &&
-                Objects.equals(time, spittle.time);
+    public boolean equals(Object that) {
+        return EqualsBuilder.reflectionEquals(this, that, "id", "time");
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, time);
+        return HashCodeBuilder.reflectionHashCode(this, "id", "time");
     }
 }
