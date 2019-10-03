@@ -41,7 +41,7 @@ public class SpitterControllerTest {
     }
 
     @Test
-    public void shouldErrorOnRegistration() throws  Exception {
+    public void shouldFailValidationWithNoData() throws  Exception {
         SpitterRepository mockRepository = mock(SpitterRepository.class);
         SpitterController controller = new SpitterController(mockRepository);
         MockMvc mockMvc = standaloneSetup(controller).build();

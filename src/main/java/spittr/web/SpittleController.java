@@ -10,10 +10,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import spittr.Spittle;
 import spittr.data.SpittleRepository;
 
+import java.util.Date;
 import java.util.List;
 
-//@Controller
-//@RequestMapping("/spittles")
+@Controller
+@RequestMapping("/spittles")
 public class SpittleController {
 
     private SpittleRepository spittleRepository;
@@ -29,6 +30,12 @@ public class SpittleController {
     public List<Spittle> spittles(@RequestParam(value = "max", defaultValue = MAX_LONG_AS_STRING) long max,
                                   @RequestParam(value = "count", defaultValue = "20") int count) {
         return spittleRepository.findSpittles(max, count);
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public String saveSpittle(SpittleForm spittleForm) {
+        spittleRepository.save(new Spittle(null, spittleForm.getMessage(), new Date(), spittleForm.getLongitude(), spittleForm.getLatitude()));
+        return "redirect:/spittles";
     }
 
     @RequestMapping(value = "{spittleId}", method = RequestMethod.GET)
