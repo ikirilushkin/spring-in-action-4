@@ -12,8 +12,8 @@ import spittr.data.SpittleRepository;
 
 import java.util.List;
 
-@Controller
-@RequestMapping("/spittles")
+//@Controller
+//@RequestMapping("/spittles")
 public class SpittleController {
 
     private SpittleRepository spittleRepository;
